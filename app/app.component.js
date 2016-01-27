@@ -1,4 +1,4 @@
-System.register(['angular2/core'], function(exports_1) {
+System.register(['angular2/core', './hero_detail.component'], function(exports_1) {
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -8,12 +8,15 @@ System.register(['angular2/core'], function(exports_1) {
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1;
+    var core_1, hero_detail_component_1;
     var AppComponent, HEROES;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
+            },
+            function (hero_detail_component_1_1) {
+                hero_detail_component_1 = hero_detail_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -27,8 +30,9 @@ System.register(['angular2/core'], function(exports_1) {
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n    <h2>My Heroes</h2>\n    <ul class=\"list-group heroes\">\n      <li *ngFor=\"#hero of heroes\" class=\"list-group-item\" [class.active]=\"hero === selectedHero\" (click)=\"onSelect(hero)\">\n          <span class=\"badge\">{{hero.id}}</span>\n          {{hero.name}}\n      </li>\n    </ul>\n\n\n    <div *ngIf=\"selectedHero\">\n      <hr>\n      <h2>{{title}}</h2>\n      <h3>{{selectedHero.id}}: {{selectedHero.name}} details!</h3>\n      <div>\n        <div class=\"form-group\">\n          <label for=\"hero-id\"><strong>id: </strong></label>\n          <input type=\"text\" id=\"hero.id\" [(ngModel)]=\"selectedHero.id\" class=\"form-control\">\n        </div>\n        <div class=\"form-group\">\n          <label for=\"hero-name\"><strong>name: </strong></label>\n          <input type=\"text\" id=\"hero-name\" [(ngModel)]=\"selectedHero.name\" class=\"form-control\" placeholder=\"name\">\n        </div>\n      </div>\n    </div>\n    ",
+                        template: "\n    <h2>My Heroes</h2>\n    <ul class=\"list-group heroes\">\n      <li *ngFor=\"#hero of heroes\" class=\"list-group-item\"\n        [class.active]=\"hero === selectedHero\"\n        (click)=\"onSelect(hero)\">\n          <span class=\"badge\">{{hero.id}}</span>\n          {{hero.name}}\n      </li>\n    </ul>\n\n    <my-hero-detail [hero]=\"selectedHero\"></my-hero-detail>\n    ",
                         styles: ["\n    .heroes li {\n      margin: .10em;\n      cursor: pointer;\n    }\n    .heroes li:hover {\n      border: 1px solid #df691a;\n    }\n    .badge {\n      border: 1px solid #df691a;\n    }\n  "],
+                        directives: [hero_detail_component_1.HeroDetailComponent],
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);

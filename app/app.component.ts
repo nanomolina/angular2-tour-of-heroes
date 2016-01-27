@@ -1,37 +1,21 @@
 import {Component} from 'angular2/core';
-
-interface Hero {
-  id: number;
-  name: string;
-}
+import {Hero} from './hero'
+import {HeroDetailComponent} from './hero_detail.component';
 
 @Component({
   selector: 'my-app',
   template:`
     <h2>My Heroes</h2>
     <ul class="list-group heroes">
-      <li *ngFor="#hero of heroes" class="list-group-item" [class.active]="hero === selectedHero" (click)="onSelect(hero)">
+      <li *ngFor="#hero of heroes" class="list-group-item"
+        [class.active]="hero === selectedHero"
+        (click)="onSelect(hero)">
           <span class="badge">{{hero.id}}</span>
           {{hero.name}}
       </li>
     </ul>
 
-
-    <div *ngIf="selectedHero">
-      <hr>
-      <h2>{{title}}</h2>
-      <h3>{{selectedHero.id}}: {{selectedHero.name}} details!</h3>
-      <div>
-        <div class="form-group">
-          <label for="hero-id"><strong>id: </strong></label>
-          <input type="text" id="hero.id" [(ngModel)]="selectedHero.id" class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="hero-name"><strong>name: </strong></label>
-          <input type="text" id="hero-name" [(ngModel)]="selectedHero.name" class="form-control" placeholder="name">
-        </div>
-      </div>
-    </div>
+    <my-hero-detail [hero]="selectedHero"></my-hero-detail>
     `,
   styles:[`
     .heroes li {
@@ -45,6 +29,7 @@ interface Hero {
       border: 1px solid #df691a;
     }
   `],
+  directives: [HeroDetailComponent],
 })
 
 export class AppComponent {
