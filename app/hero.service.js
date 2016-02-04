@@ -1,5 +1,4 @@
 System.register(['./mock-heroes', 'angular2/core'], function(exports_1) {
-    "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
         if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -24,14 +23,22 @@ System.register(['./mock-heroes', 'angular2/core'], function(exports_1) {
                 function HeroService() {
                 }
                 HeroService.prototype.getHeroes = function () {
-                    return mock_heroes_1.HEROES;
+                    return Promise.resolve(mock_heroes_1.HEROES);
+                };
+                // See the "Take it slow" appendix
+                HeroService.prototype.getHeroesSlowly = function () {
+                    return new Promise(function (resolve) {
+                        return setTimeout(function () { return resolve(mock_heroes_1.HEROES); }, 2000);
+                    } // 2 seconds
+                     // 2 seconds
+                    );
                 };
                 HeroService = __decorate([
                     core_1.Injectable(), 
                     __metadata('design:paramtypes', [])
                 ], HeroService);
                 return HeroService;
-            }());
+            })();
             exports_1("HeroService", HeroService);
         }
     }
